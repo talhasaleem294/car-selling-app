@@ -3,10 +3,12 @@ const Vehicle = require('../../models/vehicles')
 
 exports.findUsers = async (req, res) => {
   try {
+    
     let user = await Users.findOne({
-      email: req.body.email
+      email: req.body.email,
+      password: req.body.password
     })
-    if (!!user && user.email) {
+    if (!!user && !!user.email) {
       return res.status(200).json({ success: true, data: "user authenticated" })
     }
     else if (!user) {
